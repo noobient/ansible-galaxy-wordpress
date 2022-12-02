@@ -1,3 +1,5 @@
 ---
 - include_tasks: cli.yml
+  when: installed_wpcli is not defined
+
 - include_tasks: upgrade.yml
