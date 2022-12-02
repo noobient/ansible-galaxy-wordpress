@@ -1,0 +1,5 @@
+---
+wp_up_core_str: 'Success: WordPress is at the latest version.'
+wp_up_db_str: 'Success: WordPress database already at latest db version'
+wp_up_plugin_str: 'Success: Plugin already updated.'
+wp_up_theme_str: 'Success: Theme already updated.'

@@ -1,0 +1,31 @@
+---
+# Update addons first
+- name: "Update WordPress plugins in {{ path }}"
+  command:
+    cmd: "wp --path={{ path }} --no-color plugin update --all"
+  changed_when: (wp_up_plugin_str not in wp_plugin_upd.stdout)
+  register: wp_plugin_upd
+
+- name: "Update WordPress themes in {{ path }}"
+  command:
+    cmd: "wp --path={{ path }} --no-color theme update --all"
+  changed_when: (wp_up_theme_str not in wp_theme_upd.stdout)
+  register: wp_theme_upd
+
+- name: "Check for WordPress updates in {{ path }}"
+  command:
+    cmd: "wp --path={{ path }} --no-color core check-update"
+  changed_when: false
+  register: wp_upd_chk
+
+- name: "Update WordPress in {{ path }}"
+  command:
+    cmd: "wp --path={{ path }} --no-color core update"
+  when: (wp_up_core_str not in wp_upd_chk.stdout)
+
+- name: "Update WordPress database in {{ path }}"
+  command:
+    cmd: "wp --path={{ path }} --no-color core update-db"
+  changed_when: (wp_up_db_str not in wp_db_upd.stdout)
+  register: wp_db_upd
+
