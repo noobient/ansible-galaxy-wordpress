@@ -28,4 +28,3 @@
     cmd: "wp --path={{ path }} --no-color core update-db"
   changed_when: (wp_up_db_str not in wp_db_upd.stdout)
   register: wp_db_upd
-
