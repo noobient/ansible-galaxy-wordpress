@@ -1,0 +1,13 @@
+---
+# TODO idempotency
+- name: "Perform WordPress upgrade on {{ path }}"
+  command:
+    cmd: "wp --path={{ path }} {{ wp_cmd }}"
+  loop:
+    - core check-update
+    - core update
+    - core update-db
+    - plugin update --all
+    - theme update --all
+  loop_control:
+    loop_var: wp_cmd

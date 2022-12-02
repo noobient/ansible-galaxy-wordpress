@@ -1,0 +1,21 @@
+---
+- name: Install PHP CLI
+  package:
+    name: php-cli
+    state: latest
+
+- include_role:
+    name: bviktor.github_release
+  vars:
+    - owner: 'wp-cli'
+    - repo: 'wp-cli'
+    - prefix: 'wp-cli-'
+    - suffix: '.phar'
+
+- name: "Obtain WP-CLI"
+  get_url:
+    url: "{{ noobuntu_github_release_url }}"
+    dest: /usr/local/sbin/wp
+    mode: '0755'
+    owner: root
+    group: root
