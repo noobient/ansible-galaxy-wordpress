@@ -10,4 +10,5 @@ galaxy_info:
     - bionic
   galaxy_tags: []
 
-dependencies: []
+dependencies:
+  - bviktor.github_release
