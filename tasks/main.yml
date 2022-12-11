@@ -3,3 +3,4 @@
   when: installed_wpcli is not defined
 
 - include_tasks: update.yml
+  when: update is defined and update | bool

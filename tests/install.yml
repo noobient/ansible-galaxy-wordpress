@@ -1,0 +1,15 @@
+---
+- name: Install WordPress
+  command:
+    cmd: "{{ item }}"
+  loop:
+    - "{% if ansible_os_family == 'RedHat' %}dnf{% else %}apt{% endif %} -y install mariadb-server php-mysql{% if ansible_os_family == 'RedHat' %}nd{% endif %}"
+    - systemctl start mariadb.service
+    - mysql -e "CREATE DATABASE wordpress"
+    - mysql -e "CREATE USER 'wordpress'@'localhost' IDENTIFIED BY 'Asdf1234'"
+    - mysql -e "GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'localhost'"
+    - mysql -e "FLUSH PRIVILEGES"
+    - mkdir -p /var/www/html
+    - wp core download --allow-root --path=/var/www/html/wordpress --version=6.1
+    - wp config create --allow-root --path=/var/www/html/wordpress --dbname=wordpress --dbuser=wordpress --dbpass=Asdf1234
+    - wp core install --allow-root --path=/var/www/html/wordpress --url=example.com --title=Example --admin_user=supervisor --admin_password=strongpassword --admin_email=info@example.com
