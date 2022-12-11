@@ -12,6 +12,7 @@
   systemd:
     name: mariadb.service
     state: started
+    daemon_reload: true
 
 - name: Install WordPress
   command:
