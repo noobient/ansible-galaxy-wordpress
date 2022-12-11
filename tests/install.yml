@@ -1,10 +1,22 @@
 ---
+- name: Install WordPress dependencies
+  package:
+    name: "{{ packages }}"
+  vars:
+    packages:
+      - mariadb-server
+      - "php-mysql{% if ansible_os_family == 'RedHat' %}nd{% endif %}"
+      - php-json
+
+- name: Start MariaDB
+  systemd:
+    name: mariadb.service
+    state: started
+
 - name: Install WordPress
   command:
     cmd: "{{ item }}"
   loop:
-    - "{% if ansible_os_family == 'RedHat' %}dnf{% else %}apt{% endif %} -y install mariadb-server php-mysql{% if ansible_os_family == 'RedHat' %}nd{% endif %} php-json"
-    - systemctl start mariadb.service
     - mysql -e "CREATE DATABASE wordpress"
     - mysql -e "CREATE USER 'wordpress'@'localhost' IDENTIFIED BY 'Asdf1234'"
     - mysql -e "GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'@'localhost'"
