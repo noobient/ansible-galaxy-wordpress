@@ -3,7 +3,7 @@
   command:
     cmd: "{{ item }}"
   loop:
-    - "{% if ansible_os_family == 'RedHat' %}dnf{% else %}apt{% endif %} -y install mariadb-server php-mysql{% if ansible_os_family == 'RedHat' %}nd{% endif %}"
+    - "{% if ansible_os_family == 'RedHat' %}dnf{% else %}apt{% endif %} -y install mariadb-server php-mysql{% if ansible_os_family == 'RedHat' %}nd{% endif %} php-json"
     - systemctl start mariadb.service
     - mysql -e "CREATE DATABASE wordpress"
     - mysql -e "CREATE USER 'wordpress'@'localhost' IDENTIFIED BY 'Asdf1234'"
