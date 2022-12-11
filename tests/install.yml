@@ -13,6 +13,12 @@
     name: mariadb.service
     state: started
     daemon_reload: true
+    no_block: true
+
+# TODO workaround for MariaDB locking up on 18.04/20.04
+- name: Wait for MariaDB to start up
+  pause:
+    seconds: 5
 
 - name: Install WordPress
   command:
