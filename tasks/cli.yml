@@ -14,7 +14,7 @@
 
 - name: "Obtain WP-CLI"
   get_url:
-    url: "{{ github_release_url }}"
+    url: "{{ github_release.url }}"
     dest: /usr/local/sbin/wp
     mode: '0755'
     owner: root
