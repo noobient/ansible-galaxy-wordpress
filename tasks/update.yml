@@ -18,7 +18,7 @@
   changed_when: false
   register: wp_upd_chk
 
-- name: "Update WordPress in {{ path }}"
+- name: "Update WordPress in {{ path }}" # noqa no-changed-when
   command:
     cmd: "wp --allow-root --path={{ path }} --no-color core update"
   when: (wp_up_core_str not in wp_upd_chk.stdout)

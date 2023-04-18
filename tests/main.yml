@@ -7,6 +7,14 @@
 
     - include_tasks: install.yml
 
+    # Initial run, var casting
+    - include_role:
+        name: "{{ playbook_dir.split('/')[:-1] | last }}"
+      vars:
+        path: /var/www/html/wordpress
+        update: "true"
+
+    # Idempotency
     - include_role:
         name: "{{ playbook_dir.split('/')[:-1] | last }}"
       vars:

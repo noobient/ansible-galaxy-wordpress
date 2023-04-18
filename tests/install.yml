@@ -20,7 +20,7 @@
   pause:
     seconds: 5
 
-- name: Install WordPress
+- name: Install WordPress # noqa no-changed-when
   command:
     cmd: "{{ item }}"
   loop:
