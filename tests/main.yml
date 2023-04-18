@@ -2,21 +2,23 @@
 - hosts: 127.0.0.1
   tasks:
 
+    # Dry run, var casting, obtain CLI tools
     - include_role:
         name: "{{ playbook_dir.split('/')[:-1] | last }}"
+      vars:
+        dry_run: "true"
 
     - include_tasks: install.yml
 
-    # Initial run, var casting
+    # Live run, var casting
     - include_role:
         name: "{{ playbook_dir.split('/')[:-1] | last }}"
       vars:
         path: /var/www/html/wordpress
-        update: "true"
+        dry_run: "false"
 
-    # Idempotency
+    # Idempotency, default value
     - include_role:
         name: "{{ playbook_dir.split('/')[:-1] | last }}"
       vars:
         path: /var/www/html/wordpress
-        update: true

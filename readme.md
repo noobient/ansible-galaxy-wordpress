@@ -8,8 +8,8 @@ This role lets you perform various tasks on your WordPress instances.
 
 | Name | Required | Example | Description |
 |---|---|---|---|
-| `path` | no | `/var/www/html/wordpress` | Path to your WordPress instance. Only optional if no other parameters are passed. |
-| `update` | no | `true` | If `true`, the specified WP instance is updated to the latest version. |
+| `path` | no | `/var/www/html/wordpress` | Path to your WordPress instance. Only optional if `dry_run` is `true`. |
+| `dry_run` | no | `true` | If `true`, only the required tools are installed, but the upgrade itself is not performed. Defaults to `false`. |
 
 ## Examples
 
@@ -18,7 +18,7 @@ This role lets you perform various tasks on your WordPress instances.
     name: bviktor.wordpress
   vars:
     path: '/var/www/html/wordpress'
-    update: yes
+    dry_run: false
 ```
 
 ## Return Values
