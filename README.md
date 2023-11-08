@@ -15,7 +15,7 @@ This role lets you perform various tasks on your WordPress instances.
 
 ```yml
 - include_role:
-    name: bviktor.wordpress
+    name: noobient.wordpress
   vars:
     path: '/var/www/html/wordpress'
     dry_run: false

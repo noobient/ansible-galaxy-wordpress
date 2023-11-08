@@ -5,7 +5,7 @@
     state: latest
 
 - include_role:
-    name: bviktor.github_release
+    name: noobient.github_release
   vars:
     owner: 'wp-cli'
     repo: 'wp-cli'
