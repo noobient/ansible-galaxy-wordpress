@@ -5,3 +5,4 @@ wp_up_plugin_str: 'Success: Plugin already updated.'
 wp_up_theme_str: 'Success: Theme already updated.'
 
 eff_dry_run: "{{ dry_run | default(false) | bool }}"
+eff_user: "{% if user is defined and user | length %}{{ user }}{% else %}root{% endif %}"

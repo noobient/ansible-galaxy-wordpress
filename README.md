@@ -2,13 +2,14 @@
 
 ## Synopsys
 
-This role lets you perform various tasks on your WordPress instances.
+This role lets you perform various tasks on your WordPress instances. Currently the only supported task is update.
 
 ## Parameters
 
 | Name | Required | Example | Description |
 |---|---|---|---|
 | `path` | no | `/var/www/html/wordpress` | Path to your WordPress instance. Only optional if `dry_run` is `true`. |
+| `user` | no | `nginx` | User to perform the action as. Defaults to `root`. |
 | `dry_run` | no | `true` | If `true`, only the required tools are installed, but the upgrade itself is not performed. Defaults to `false`. |
 
 ## Examples
@@ -18,6 +19,7 @@ This role lets you perform various tasks on your WordPress instances.
     name: noobient.wordpress
   vars:
     path: '/var/www/html/wordpress'
+    user: nginx
     dry_run: false
 ```
 
