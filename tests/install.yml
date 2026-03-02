@@ -3,7 +3,7 @@
   apt:
     update_cache: true
   register: noobient_apt_cache_updated
-  when: ansible_os_family == 'Debian' and noobient_apt_cache_updated is not defined
+  when: ansible_facts['os_family'] == 'Debian' and noobient_apt_cache_updated is not defined
 
 - name: Install WordPress dependencies
   package:
@@ -11,7 +11,7 @@
   vars:
     packages:
       - mariadb-server
-      - "php-mysql{% if ansible_os_family == 'RedHat' %}nd{% endif %}"
+      - "php-mysql{% if ansible_facts['os_family'] == 'RedHat' %}nd{% endif %}"
       - php-json
 
 - name: Start MariaDB
