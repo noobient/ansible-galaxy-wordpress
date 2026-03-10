@@ -1,0 +1,6 @@
+---
+- name: Install ACL
+  package:
+    name: acl
+    state: latest
+  register: noobient_installed_acl

@@ -1,6 +1,9 @@
 ---
+- include_tasks: acl.yml
+  when: noobient_installed_acl is not defined
+
 - include_tasks: cli.yml
-  when: installed_wpcli is not defined
+  when: noobient_installed_wpcli is not defined
 
 - include_tasks: update.yml
   when: not eff_dry_run | bool
